@@ -49,11 +49,17 @@ const bot = new Twit(config);
 // });
 
 bot.get('statuses/home_timeline', {
-  count: 1
+  count: 10
 }, (err, data, response) => {
   if (err) {
     console.log(err);
   } else {
-    console.log(data);
+    let cnt = 1;
+    data.forEach(item => {
+      console.log(`${cnt}. ${item.text}`);
+      console.log(" ");
+      cnt++;
+    });
+    // console.log(data);
   }
 });
