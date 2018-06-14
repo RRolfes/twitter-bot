@@ -36,3 +36,24 @@ const bot = new Twit(config);
 //     console.log(connections);
 //   }
 // });
+
+// bot.post('direct_messages/new', {
+//   screen_name: 'ScottDevTweets',
+//   text: 'Hello from bot!'
+// }, (err, data, response) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(data);
+//   }
+// });
+
+bot.get('statuses/home_timeline', {
+  count: 1
+}, (err, data, response) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(data);
+  }
+});
