@@ -48,18 +48,21 @@ const bot = new Twit(config);
 //   }
 // });
 
-bot.get('statuses/home_timeline', {
-  count: 10
+const getTweets = (screeName, count) => bot.get('statuses/user_timeline', {
+  screen_name: screeName,
+  count: count
 }, (err, data, response) => {
   if (err) {
     console.log(err);
   } else {
-    let cnt = 1;
+    let num = 1;
     data.forEach(item => {
-      console.log(`${cnt}. ${item.text}`);
+      console.log(`${num}. ${item.text}`);
       console.log(" ");
-      cnt++;
+      num++;
     });
     // console.log(data);
   }
 });
+
+getTweets('ronconway', 5);
