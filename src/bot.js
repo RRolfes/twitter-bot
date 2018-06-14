@@ -48,21 +48,45 @@ const bot = new Twit(config);
 //   }
 // });
 
-const getTweets = (screeName, count) => bot.get('statuses/user_timeline', {
-  screen_name: screeName,
-  count: count
+// const getTweets = (screeName, count) => bot.get('statuses/user_timeline', {
+//   screen_name: screeName,
+//   count: count
+// }, (err, data, response) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     let num = 1;
+//     data.forEach(tweet => {
+//       console.log(`${num}. ${tweet.text}`);
+//       console.log(" ");
+//       num++;
+//     });
+//   }
+// });
+//
+// getTweets('svangel', 10);
+
+bot.get('search/tweets', {
+  q: 'Y Combinator',
+  count: 5
 }, (err, data, response) => {
   if (err) {
     console.log(err);
   } else {
-    let num = 1;
-    data.forEach(item => {
-      console.log(`${num}. ${item.text}`);
-      console.log(" ");
-      num++;
+    data.statuses.forEach(s => {
+      console.log(s.text);
+      console.log(s.user.screen_name);
+      console.log('\n');
     });
-    // console.log(data);
   }
 });
 
-getTweets('ronconway', 5);
+const keyWords = "Y Combinator";
+
+const stream = bot.stream('statuses/filter', {
+  track: keyWords
+});
+
+stream.on('tweet', t => {
+  console.log(`${t.text}\n`);
+});
