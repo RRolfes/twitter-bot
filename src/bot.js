@@ -66,27 +66,27 @@ const bot = new Twit(config);
 //
 // getTweets('svangel', 10);
 
-bot.get('search/tweets', {
-  q: 'Y Combinator',
-  count: 5
-}, (err, data, response) => {
-  if (err) {
-    console.log(err);
-  } else {
-    data.statuses.forEach(s => {
-      console.log(s.text);
-      console.log(s.user.screen_name);
-      console.log('\n');
-    });
-  }
-});
+// bot.get('search/tweets', {
+//   q: 'drrolfes',
+//   count: 5
+// }, (err, data, response) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     data.statuses.forEach(s => {
+//       console.log(s.text);
+//       console.log(s.user.screen_name);
+//       console.log('\n');
+//     });
+//   }
+// });
 
-const keyWords = "Y Combinator";
-
-const stream = bot.stream('statuses/filter', {
-  track: keyWords
-});
-
-stream.on('tweet', t => {
-  console.log(`${t.text}\n`);
-});
+// const keyWords = "venture capital";
+//
+// const stream = bot.stream('statuses/filter', {
+//   track: keyWords
+// });
+//
+// stream.on('tweet', t => {
+//   console.log(`${t.text}\n`);
+// });
